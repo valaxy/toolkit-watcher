@@ -10,13 +10,13 @@
 
 module.exports = [
 	//{
-	//	// webstorm¼æÈİ
+	//	// webstormå…¼å®¹
 	//	isEnabled        : false,
-	//	checkSyntaxErrors: '', // todo ÕâÀïµÄÎÊÌâÊÇÈçºÎÊ¶±ğsyntax error
+	//	checkSyntaxErrors: '', // todo è¿™é‡Œçš„é—®é¢˜æ˜¯å¦‚ä½•è¯†åˆ«syntax error
 	//	description      : '', // human readable string for long text
 	//	exitCodeBehavior : '', // show console
 	//	fileExtension    : '',
-	//	filter           : '', // glob matcher, ²»ÖªµÀÊÇ¸ÉÊ²Ã´µÄ
+	//	filter           : '', // glob matcher, ä¸çŸ¥é“æ˜¯å¹²ä»€ä¹ˆçš„
 	//	immediateSync    : '',
 	//	name             : '', // human readable string for short text
 	//	output           : '',
@@ -29,16 +29,16 @@ module.exports = [
 	//		'$FilePath'
 	//	], // string of string of array
 	//	scopeName        : '',
-	//	trackOnlyRoot    : '', // todo Èç¹û²»ÖªµÀÓï·¨½«²»ÄÜ·¢»Ó×÷ÓÃ
+	//	trackOnlyRoot    : '', // todo å¦‚æœä¸çŸ¥é“è¯­æ³•å°†ä¸èƒ½å‘æŒ¥ä½œç”¨
 	//	workingDir       : '',
 	//
-	//	// ×Ô¶¨Òå
+	//	// è‡ªå®šä¹‰
 	//	fileNameMatch: /\.jade$/, // execute program if fileName match
 	//	filePathMatch: ''  // execute program if filePath match
 	//},
 	{
 		isEnabled    : true,
-		description  : '±àÒëJADE',
+		description  : 'ç¼–è¯‘JADE',
 		program      : 'jade',
 		arguments    : [
 			'--out $FileDir',
@@ -48,7 +48,7 @@ module.exports = [
 	},
 	{
 		isEnabled    : true,
-		description  : '±àÒëSCSS',
+		description  : 'ç¼–è¯‘SCSS',
 		program      : 'sass',
 		arguments    : [
 			'--sourcemap=none',
