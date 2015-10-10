@@ -41,7 +41,7 @@ module.exports = [
 		description  : '编译JADE',
 		program      : 'jade',
 		arguments    : [
-			'--out $FileDir',
+			'--out $DirPath',
 			'$FilePath'
 		],
 		fileNameMatch: /\.jade$/
@@ -54,7 +54,7 @@ module.exports = [
 			'--sourcemap=none',
 			'--no-cache',
 			'$FilePath',
-			'${FileDir}/${FileNameWithoutExtension}.css'
+			'${DirPath}/${FileNameWithoutAllExtensions}.css'
 		],
 		fileNameMatch: /\.scss$/
 	}
