@@ -1,3 +1,4 @@
+require('colors')
 var commander = require('commander'),
     fs        = require('fs'),
     main      = require('./lib/main')

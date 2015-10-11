@@ -9,9 +9,9 @@
 //
 
 module.exports = {
-	version         : '0.0.0',
-	filePathExcludes: /^excludes(\/.*)?$/,
-	tasks           : [
+	version                   : '0.0.0',
+	excludesOnFileRelativePath: /^excludes(\/.*)?$/,
+	tasks                     : [
 		{
 			isEnabled              : true,
 			description            : '编译JADE',
