@@ -2,7 +2,7 @@ var assert = require('assert'),
     marco  = require('../lib/marco')
 
 
-describe('Array', function () {
+describe('marco', function () {
 	it('no extension', function () {
 		var dict = marco('/root/a', '/root')
 		assert.equal('/root', dict.DirPath)

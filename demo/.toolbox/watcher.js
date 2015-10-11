@@ -13,26 +13,26 @@ module.exports = {
 	filePathExcludes: /^excludes(\/.*)?$/,
 	tasks           : [
 		{
-			isEnabled    : true,
-			description  : '编译JADE',
-			program      : 'jade',
-			arguments    : [
+			isEnabled              : true,
+			description            : '编译JADE',
+			program                : 'jade',
+			arguments              : [
 				'--out $DirPath',
 				'$FilePath'
 			],
-			fileNameMatch: /\.jade$/
+			matchOnfileRelativePath: /\.jade$/
 		},
 		{
-			isEnabled    : true,
-			description  : '编译SCSS',
-			program      : 'sass',
-			arguments    : [
+			isEnabled              : true,
+			description            : '编译SCSS',
+			program                : 'sass',
+			arguments              : [
 				'--sourcemap=none',
 				'--no-cache',
 				'$FilePath',
 				'${DirPath}/${FileNameWithoutAllExtensions}.css'
 			],
-			fileNameMatch: /\.scss$/
+			matchOnfileRelativePath: /\.scss$/
 		}
 	]
 }

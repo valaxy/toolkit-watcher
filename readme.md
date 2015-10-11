@@ -3,4 +3,5 @@
 Inspired by WebStorm Watchers.
 
 # Next Features
-- × Track root file
+- × Track only root file
+- × Improve log system
