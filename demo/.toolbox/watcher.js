@@ -1,15 +1,4 @@
-//{
-//    "version": "0.0.1",
-//    "tasks":   [
-//        {
-//            "isEnabled": true
-//        }
-//    ]
-//}
-//
-
 module.exports = {
-	version                   : '0.0.0',
 	excludesOnFileRelativePath: /^excludes(\/.*)?$/,
 	tasks                     : [
 		{
@@ -20,7 +9,7 @@ module.exports = {
 				'--out $DirPath',
 				'$FilePath'
 			],
-			matchOnfileRelativePath: /\.jade$/
+			matchOnFileRelativePath: /\.jade$/
 		},
 		{
 			isEnabled              : true,
@@ -32,7 +21,7 @@ module.exports = {
 				'$FilePath',
 				'${DirPath}/${FileNameWithoutAllExtensions}.css'
 			],
-			matchOnfileRelativePath: /\.scss$/
+			matchOnFileRelativePath: /\.scss$/
 		}
 	]
 }
