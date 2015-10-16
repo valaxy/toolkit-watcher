@@ -9,7 +9,10 @@ module.exports = {
 				'--out $DirPath',
 				'$FilePath'
 			],
-			matchOnFileRelativePath: /\.jade$/
+			matchOnFileRelativePath: /\.jade$/,
+			depend                 : function (content) {
+				return ['father.jade']
+			}
 		},
 		{
 			isEnabled              : true,
