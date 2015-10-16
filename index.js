@@ -1,10 +1,15 @@
+//
+// CLI tool
+//
+
 require('colors')
 var commander = require('commander'),
-    fs        = require('fs'),
-    main      = require('./lib/main')
+    fs        = require('fs-extra'),
+    main      = require('./lib/main'),
+    path      = require('path')
 
 
-var pkg = JSON.parse(fs.readFileSync(__dirname + '/package.json', {encoding: 'utf-8'}))
+var pkg = fs.readJsonSync(__dirname + '/package.json')
 commander
 	.version(pkg.version)
 	.option('--project <project>', 'project root')
@@ -12,9 +17,11 @@ commander
 
 
 if (!commander.project) {
-	console.error('argument project needed')
-	return
+	commander.project = process.cwd()
+} else if (!path.isAbsolute(commander.project)) {
+	commander.project = path.join(__dirname, commander.project)
 }
 
 
+console.info('project'.cyan, commander.project)
 main(commander)
