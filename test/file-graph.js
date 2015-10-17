@@ -4,7 +4,11 @@ var assert    = require('assert'),
 
 describe('FileGraph', function () {
 	it('getFilesUsed()', function () {
-		assert.ok(true)
+		var fg = FileGraph.create()
+		fg.onAddFile('a', [])
+		assert.deepEqual([], fg.getFilesUsed('a'))
+		fg.onAddFile('b', ['a'])
+		assert.deepEqual(['b'], fg.getFilesUsed('a'))
 	})
 
 	it('onAddFile()', function () {

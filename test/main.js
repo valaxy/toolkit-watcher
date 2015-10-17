@@ -26,7 +26,7 @@ describe('main', function () {
 		fs.mkdirs(path.join(dir, '.toolbox'))
 		fs.outputFileSync(path.join(dir, '.toolbox/watcher.js'), getScript(function () {
 			module.exports = {
-				excludesOnFileRelativePath: /^excludes(\/.*)?$/,
+				ignoreOnFileRelativePath: /^excludes(\/.*)?$/,
 				tasks                     : [
 					{
 						isEnabled              : true,

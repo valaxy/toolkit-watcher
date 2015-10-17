@@ -6,9 +6,11 @@ require('colors')
 var commander = require('commander'),
     fs        = require('fs-extra'),
     main      = require('./lib/main'),
-    path      = require('path')
+    path      = require('path'),
+    logger    = require('./lib/log').get()
 
 
+logger.openConsole()
 var pkg = fs.readJsonSync(__dirname + '/package.json')
 commander
 	.version(pkg.version)

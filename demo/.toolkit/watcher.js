@@ -1,6 +1,6 @@
 module.exports = {
-	excludesOnFileRelativePath: /^excludes(\/.*)?$/,
-	tasks                     : [
+	ignoreOnFileRelativePath: /^excludes(\/.*)?$/,
+	tasks                   : [
 		{
 			isEnabled              : true,
 			description            : '编译JADE',

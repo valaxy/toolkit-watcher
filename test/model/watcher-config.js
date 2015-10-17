@@ -8,24 +8,37 @@ describe('model.WatcherConfig', function () {
 		assert.deepEqual([], config.tasks())
 	})
 
-	it('excludesOnFileRelativePath()/fileIsExclude()', function () {
+	it('isIgnoreFile()', function () {
+		// undefined/default
 		var config = WatcherConfig.create()
-		assert.ok(!config.fileIsExclude('xyz'))
+		assert.ok(!config.isIgnoreFile('xyz'))
 
-		var config = WatcherConfig.create({excludesOnFileRelativePath: /abc/})
-		assert.ok(config.fileIsExclude('dir/abc/xyz'))
+		// regexp
+		var config = WatcherConfig.create({ignoreOnFileRelativePath: /abc/})
+		assert.ok(config.isIgnoreFile({fileRelativePath: 'dir/abc/xyz'}))
 
-		var config = WatcherConfig.create({excludesOnFileRelativePath: [/abc/, /xyz/]})
-		assert.ok(config.fileIsExclude('xyz/123'))
+		// regexp array
+		var config = WatcherConfig.create({ignoreOnFileRelativePath: [/abc/, /xyz/]})
+		assert.ok(config.isIgnoreFile({fileRelativePath: 'xyz/123'}))
 
+		// function
 		var config = WatcherConfig.create({
-			excludesOnFileRelativePath: function () {
-				return /123/
+			ignoreOnFileRelativePath: function (info) {
+				return !!info.fileRelativePath.match(/123/)
 			}
 		})
-		assert.ok(config.fileIsExclude('xyz/123'))
+		assert.ok(config.isIgnoreFile({fileRelativePath: 'xyz/123'}))
 
-		var config = WatcherConfig.create({excludesOnFileRelativePath: 'abc'})
-		assert.ok(!config.fileIsExclude('abc'))
+		// function but throw error
+		var config = WatcherConfig.create({
+			ignoreOnFileRelativePath: function () {
+				throw new Error('test error')
+			}
+		})
+		assert.ok(!config.isIgnoreFile({fileRelativePath: 'abc'}))
+
+		// wrong type
+		var config = WatcherConfig.create({ignoreOnFileRelativePath: 'abc'})
+		assert.ok(!config.isIgnoreFile({fileRelativePath: 'abc'}))
 	})
 })
