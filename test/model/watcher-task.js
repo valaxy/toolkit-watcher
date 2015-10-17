@@ -4,17 +4,21 @@ var assert      = require('assert'),
 
 describe('model.WatcherTask', function () {
 	it('isEnabled()', function () {
-		var t = WatcherTask.create({})
+		// undefined/default
+		var t = WatcherTask.create()
 		assert.equal(t.isEnabled(), false)
 
+		// false
 		var t = WatcherTask.create({isEnabled: false})
 		assert.equal(t.isEnabled(), false)
 
+		// true
 		var t = WatcherTask.create({isEnabled: true})
 		assert.equal(t.isEnabled(), true)
 
+		// Function
 		var flag = undefined
-		t = WatcherTask.create({
+		var t = WatcherTask.create({
 			isEnabled: function () {
 				var result = flag
 				flag = !flag
@@ -24,39 +28,86 @@ describe('model.WatcherTask', function () {
 		assert.equal(t.isEnabled(), false)
 		assert.equal(t.isEnabled(), true)
 		assert.equal(t.isEnabled(), false)
+
+		// Function throw error
+		var t = WatcherTask.create({
+			isEnabled: function () {
+				throw new Error('test error')
+			}
+		})
+		assert.equal(t.isEnabled(), false)
+		assert.equal(t.isEnabled(), false)
 	})
 
-	it('matchOnFileRelativePath()/isMatchOnFileRelativePath()', function () {
+	it('isMatchOnFileRelativePath()', function () {
+		// undefined/default
 		var t = WatcherTask.create()
-		assert.ok(!t.isMatchOnFileRelativePath('a'))
+		assert.ok(!t.isMatchOnFileRelativePath({fileRelativePath: 'a'}))
 
+		// Regexp
 		var t = WatcherTask.create({matchOnFileRelativePath: /abc/})
-		assert.ok(t.isMatchOnFileRelativePath('abc/xyz'))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc/xyz'}))
 
+		// Array<Regexp>
 		var t = WatcherTask.create({
 			matchOnFileRelativePath: [
 				/abc/,
 				/xyz/
 			]
 		})
-		assert.ok(t.isMatchOnFileRelativePath('abc'))
-		assert.ok(t.isMatchOnFileRelativePath('xyz'))
-		assert.ok(t.isMatchOnFileRelativePath('abc/xyz'))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'xyz'}))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc/xyz'}))
 
+		// Function
 		var index = 0
-		var result = [
-			undefined,
-			/abc/,
-			[/xyz/]
-		]
+		var result = [true, true, false]
 		var t = WatcherTask.create({
 			matchOnFileRelativePath: function () {
 				return result[index++]
 			}
 		})
-		assert.ok(!t.isMatchOnFileRelativePath('abc'))
-		assert.ok(t.isMatchOnFileRelativePath('abc'))
-		assert.ok(t.isMatchOnFileRelativePath('xyz'))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
+		assert.ok(!t.isMatchOnFileRelativePath({fileRelativePath: 'xyz'}))
+
+		// Function throw error
+		var t = WatcherTask.create({
+			matchOnFileRelativePath: function () {
+				throw new Error('test error')
+			}
+		})
+		assert.ok(!t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
+	})
+
+	it('arguments()', function () {
+		// undefined/default
+		var t = WatcherTask.create()
+		assert.equal(t.arguments(), '')
+
+		// String
+		var t = WatcherTask.create({arguments: ' abc '})
+		assert.equal(t.arguments(), 'abc')
+
+		// Array<String>
+		var t = WatcherTask.create({arguments: ['abc', '123']})
+		assert.equal(t.arguments(), 'abc 123')
+
+		// Function
+		var t = WatcherTask.create({
+			arguments: function () {
+				return 'abc efg'
+			}
+		})
+		assert.equal(t.arguments(), 'abc efg')
+
+		// Function throws
+		var t = WatcherTask.create({
+			arguments: function () {
+				throw new Error('test error')
+			}
+		})
+		assert.equal(t.arguments(), '')
 	})
 
 })
