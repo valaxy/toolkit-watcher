@@ -15,7 +15,11 @@ Check demo/.toolkit/watcher.js to see how to use
 ```javascript
 module.exports = {
     tasks: [{ // add tasks as many as you want
-        ...  
+        isEnabled: false,
+        description: '',
+        program: '',
+        arguments: [],
+        matchOnFileRelativePath: ''
     }]
 }
 ```

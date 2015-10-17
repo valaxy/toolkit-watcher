@@ -1,13 +1,13 @@
 {
-  "name": "watcher",
-  "version": "0.1.0-dev",
-  "description": "",
+  "name": "toolkit-watcher",
+  "version": "0.1.0",
+  "description": "CLI",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "valaxy",
+  "license": "MIT",
   "dependencies": {
     "algorithm-data-structure": "valaxy/algorithm-data-structure",
     "chokidar": "^1.2.0",
