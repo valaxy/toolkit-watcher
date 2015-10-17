@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "algorithm-data-structure": "valaxy/algorithm-data-structure",
     "chokidar": "^1.2.0",
     "colors": "^1.1.2",
     "commander": "^2.8.1",
