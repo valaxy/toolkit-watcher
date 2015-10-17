@@ -86,7 +86,7 @@ describe('model.WatcherTask', function () {
 		assert.equal(t.arguments(), '')
 
 		// String
-		var t = WatcherTask.create({arguments: ' abc '})
+		var t = WatcherTask.create({arguments: 'abc'})
 		assert.equal(t.arguments(), 'abc')
 
 		// Array<String>

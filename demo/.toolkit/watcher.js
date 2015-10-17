@@ -6,8 +6,8 @@ module.exports = {
 			description            : '编译JADE',
 			program                : 'jade',
 			arguments              : [
-				'--out $DirPath',
-				'$FilePath'
+				'--out $dirPath',
+				'$filePath'
 			],
 			matchOnFileRelativePath: /\.jade$/,
 			depend                 : function (content) {
@@ -21,8 +21,8 @@ module.exports = {
 			arguments              : [
 				'--sourcemap=none',
 				'--no-cache',
-				'$FilePath',
-				'${DirPath}/${FileNameWithoutAllExtensions}.css'
+				'$filePath',
+				'${dirPath}/${fileNameWithoutAllExtensions}.css'
 			],
 			matchOnFileRelativePath: /\.scss$/
 		}

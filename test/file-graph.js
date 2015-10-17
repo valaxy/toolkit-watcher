@@ -3,13 +3,13 @@ var assert    = require('assert'),
 
 
 describe('FileGraph', function () {
-	it('getFilesUsed()', function () {
-		var fg = FileGraph.create()
-		fg.onAddFile('a', [])
-		assert.deepEqual([], fg.getFilesUsed('a'))
-		fg.onAddFile('b', ['a'])
-		assert.deepEqual(['b'], fg.getFilesUsed('a'))
-	})
+	//it('getFilesUsed()', function () {
+	//	var fg = FileGraph.create()
+	//	fg.onAddFile('a', [])
+	//	assert.deepEqual([], fg.getFilesUsed('a'))
+	//	fg.onAddFile('b', ['a'])
+	//	assert.deepEqual(['b'], fg.getFilesUsed('a'))
+	//})
 
 	it('onAddFile()', function () {
 		var fg = FileGraph.create()

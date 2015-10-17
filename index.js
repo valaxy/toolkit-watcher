@@ -7,10 +7,9 @@ var commander = require('commander'),
     fs        = require('fs-extra'),
     main      = require('./lib/main'),
     path      = require('path'),
-    logger    = require('./lib/log').get()
+    logger    = require('./lib/log').openConsole()
 
 
-logger.openConsole()
 var pkg = fs.readJsonSync(__dirname + '/package.json')
 commander
 	.version(pkg.version)
@@ -25,5 +24,5 @@ if (!commander.project) {
 }
 
 
-console.info('project'.cyan, commander.project)
+logger.info('project'.cyan, commander.project)
 main(commander)
