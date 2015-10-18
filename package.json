@@ -4,7 +4,7 @@
   "description": "CLI tool. Execute program when file add/change/delete/etc",
   "main": "./index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --recursive"
   },
   "bin": "./index.js",
   "author": "valaxy",

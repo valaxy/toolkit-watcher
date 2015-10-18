@@ -115,15 +115,19 @@ describe('model.WatcherTask', function () {
 	it('outputPath()', function () {
 		// undefined/default
 		var t = WatcherTask.create()
-		assert.equal(t.outputPath(), undefined)
+		assert.equal(t.outputPath({filePath: 'test.js'}), 'test.js.output')
 
 		// String
-		var t = WatcherTask.create({outputPath: ' 123 '})
+		var t = WatcherTask.create({outputPath: '123'})
 		assert.equal(t.outputPath(), '123')
+
+		// String with marco
+		var t = WatcherTask.create({outputPath: '${filePath}.test'})
+		assert.equal(t.outputPath({filePath: 'abc'}), 'abc.test')
 
 		// Empty-String
 		var t = WatcherTask.create({outputPath: ''})
-		assert.equal(t.outputPath(), undefined)
+		assert.equal(t.outputPath({filePath: 'test.js'}), 'test.js.output')
 
 		// Function
 		var t = WatcherTask.create({

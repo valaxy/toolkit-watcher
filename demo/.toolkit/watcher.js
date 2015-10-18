@@ -1,6 +1,8 @@
 module.exports = {
-	ignoreOnFileRelativePath: /^excludes(\/.*)?$/,
-
+	ignoreOnFileRelativePath: [
+		/^excludes(\/.*)?$/,
+		/^dest(\/.*)?$/
+	],
 
 	tasks: [
 		{
@@ -29,8 +31,15 @@ module.exports = {
 			matchOnFileRelativePath: /\.scss$/
 		},
 		{
-			createOutputFromStdout: true,
-			outputPaths           : ''
+			description            : 'compile ECMAScript 6',
+			isEnabled              : true,
+			matchOnFileRelativePath: /\.es6\.js$/,
+			program                : 'babel',
+			arguments              : [
+				'$filePath'
+			],
+			createOutputFromStdout : true,
+			outputPath             : '${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'
 		}
 	]
 }

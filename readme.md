@@ -22,7 +22,9 @@ module.exports = {
         description: '',
         program: '',
         arguments: [],
-        matchOnFileRelativePath: ''
+        matchOnFileRelativePath: '',
+        createOutputFromStdout: false,
+        outputPath: ''
     }]
 }
 ```
@@ -31,3 +33,4 @@ module.exports = {
 - Track only root file
 - compile be depended files
 - Specify current workplace path
+- Normalize path, all use linux '/' nor windows '\'
