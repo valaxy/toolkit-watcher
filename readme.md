@@ -1,6 +1,7 @@
 > This is under development
 
 [![Build Status](https://travis-ci.org/valaxy/toolkit-watcher.svg?branch=master)](https://travis-ci.org/valaxy/toolkit-watcher)
+[![Dependency Status](https://david-dm.org/valaxy/toolkit-watcher.svg)](https://david-dm.org/valaxy/toolkit-watcher)
 
 Inspired by WebStorm Watchers.
 
