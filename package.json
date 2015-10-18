@@ -1,11 +1,12 @@
 {
   "name": "toolkit-watcher",
-  "version": "0.1.0",
-  "description": "CLI",
-  "main": "index.js",
+  "version": "0.1.0-dev",
+  "description": "CLI tool. Execute program when file add/change/delete/etc",
+  "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
+  "bin": "./index.js",
   "author": "valaxy",
   "license": "MIT",
   "dependencies": {
