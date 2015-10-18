@@ -60,16 +60,14 @@ describe('model.WatcherTask', function () {
 		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc/xyz'}))
 
 		// Function
-		var index = 0
-		var result = [true, true, false]
 		var t = WatcherTask.create({
-			matchOnFileRelativePath: function () {
-				return result[index++]
+			matchOnFileRelativePath: function (info) {
+				return info == 1
 			}
 		})
-		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
-		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
-		assert.ok(!t.isMatchOnFileRelativePath({fileRelativePath: 'xyz'}))
+		assert.ok(!t.isMatchOnFileRelativePath(0))
+		assert.ok(t.isMatchOnFileRelativePath(1))
+		assert.ok(!t.isMatchOnFileRelativePath(2))
 
 		// Function throw error
 		var t = WatcherTask.create({
@@ -89,7 +87,7 @@ describe('model.WatcherTask', function () {
 		var t = WatcherTask.create({arguments: 'abc'})
 		assert.equal(t.arguments(), 'abc')
 
-		// String with marcon
+		// String with marco
 		var t = WatcherTask.create({arguments: '$marco'})
 		assert.equal(t.arguments({marco: 'test'}), 'test')
 
@@ -105,13 +103,43 @@ describe('model.WatcherTask', function () {
 		})
 		assert.equal(t.arguments('test'), 'test')
 
-		// Function throws
+		// Function throw error
 		var t = WatcherTask.create({
 			arguments: function () {
 				throw new Error('test error')
 			}
 		})
 		assert.equal(t.arguments(), '')
+	})
+
+	it('outputPath()', function () {
+		// undefined/default
+		var t = WatcherTask.create()
+		assert.equal(t.outputPath(), undefined)
+
+		// String
+		var t = WatcherTask.create({outputPath: ' 123 '})
+		assert.equal(t.outputPath(), '123')
+
+		// Empty-String
+		var t = WatcherTask.create({outputPath: ''})
+		assert.equal(t.outputPath(), undefined)
+
+		// Function
+		var t = WatcherTask.create({
+			outputPath: function (info) {
+				return info
+			}
+		})
+		assert.equal(t.outputPath('test'), 'test')
+
+		// Function throw error
+		var t = WatcherTask.create({
+			outputPath: function () {
+				throw 'test error'
+			}
+		})
+		assert.equal(t.outputPath({filePath: 'test.js'}), 'test.js.output')
 	})
 
 })

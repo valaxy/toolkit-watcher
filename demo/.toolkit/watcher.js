@@ -1,6 +1,8 @@
 module.exports = {
 	ignoreOnFileRelativePath: /^excludes(\/.*)?$/,
-	tasks                   : [
+
+
+	tasks: [
 		{
 			isEnabled              : true,
 			description            : '编译JADE',
@@ -25,6 +27,10 @@ module.exports = {
 				'${dirPath}/${fileNameWithoutAllExtensions}.css'
 			],
 			matchOnFileRelativePath: /\.scss$/
+		},
+		{
+			createOutputFromStdout: true,
+			outputPaths           : ''
 		}
 	]
 }

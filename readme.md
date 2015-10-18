@@ -30,3 +30,4 @@ module.exports = {
 # Next Features
 - Track only root file
 - compile be depended files
+- Specify current workplace path
