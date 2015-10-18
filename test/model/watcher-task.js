@@ -89,17 +89,21 @@ describe('model.WatcherTask', function () {
 		var t = WatcherTask.create({arguments: 'abc'})
 		assert.equal(t.arguments(), 'abc')
 
+		// String with marcon
+		var t = WatcherTask.create({arguments: '$marco'})
+		assert.equal(t.arguments({marco: 'test'}), 'test')
+
 		// Array<String>
 		var t = WatcherTask.create({arguments: ['abc', '123']})
 		assert.equal(t.arguments(), 'abc 123')
 
 		// Function
 		var t = WatcherTask.create({
-			arguments: function () {
-				return 'abc efg'
+			arguments: function (info) {
+				return info
 			}
 		})
-		assert.equal(t.arguments(), 'abc efg')
+		assert.equal(t.arguments('test'), 'test')
 
 		// Function throws
 		var t = WatcherTask.create({
