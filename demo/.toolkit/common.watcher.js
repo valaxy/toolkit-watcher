@@ -17,7 +17,7 @@ module.exports = {
 				'$filePath'
 			],
 			matchOnFileRelativePath: /\.jade$/,
-			depend                 : function (content) {
+			dependFiles            : function (info) {
 				return ['father.jade']
 			}
 		},
