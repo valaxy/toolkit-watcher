@@ -7,7 +7,7 @@ Inspired by WebStorm Watchers.
 
 Only test in Windows, but theoretically work in other platforms
 
-Check demo/.toolkit/watcher.js to see how to use
+Check `demo` to see how to use
 
 # Usage
 - create a file `.toolbox/watcher.js` in your `<project root>`, which is the watcher config file
