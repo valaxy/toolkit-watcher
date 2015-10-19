@@ -8,6 +8,7 @@ describe('WatcherConfigCollection', function () {
 		// single add
 		var wcc = WatcherConfigCollection.create()
 		assert.deepEqual({
+			matchOnFileRelativePath : [],
 			ignoreOnFileRelativePath: [],
 			tasks                   : []
 		}, wcc.toJSON())
@@ -20,6 +21,7 @@ describe('WatcherConfigCollection', function () {
 			ignoreOnFileRelativePath: ['1']
 		})
 		assert.deepEqual({
+			matchOnFileRelativePath : [],
 			ignoreOnFileRelativePath: ['1'],
 			tasks                   : [{}]
 		}, wcc.toJSON())
@@ -32,6 +34,7 @@ describe('WatcherConfigCollection', function () {
 			ignoreOnFileRelativePath: ['2']
 		})
 		assert.deepEqual({
+			matchOnFileRelativePath : [],
 			ignoreOnFileRelativePath: ['1', '2'],
 			tasks                   : [{}, {}]
 		}, wcc.toJSON())
@@ -41,9 +44,10 @@ describe('WatcherConfigCollection', function () {
 		// add same
 		wcc.add('/a', {
 			tasks                   : [{}],
-			ignoreOnFileRelativePath: ['3']
+			ignoreOnFileRelativePath: ['3'],
 		})
 		assert.deepEqual({
+			matchOnFileRelativePath : [],
 			ignoreOnFileRelativePath: ['3', '2'],
 			tasks                   : [{}, {}]
 		}, wcc.toJSON())
@@ -54,6 +58,7 @@ describe('WatcherConfigCollection', function () {
 		wcc.remove('/b')
 		assert.equal(wcc.count(), 1)
 		assert.deepEqual({
+			matchOnFileRelativePath : [],
 			ignoreOnFileRelativePath: ['3'],
 			tasks                   : [{}]
 		}, wcc.toJSON())

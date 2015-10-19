@@ -1,4 +1,7 @@
 module.exports = {
+	matchOnFileRelativePath : [
+		'**/*'
+	],
 	ignoreOnFileRelativePath: [
 		/^excludes(\/.*)?$/,
 		/^dest(\/.*)?$/
@@ -10,7 +13,7 @@ module.exports = {
 			description            : '编译JADE',
 			program                : 'jade',
 			arguments              : [
-				'--out $dirPath',
+				'--out ${projectPath}/dest/${dirRelativePath}',
 				'$filePath'
 			],
 			matchOnFileRelativePath: /\.jade$/,
