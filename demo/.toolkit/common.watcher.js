@@ -18,7 +18,12 @@ module.exports = {
 			],
 			matchOnFileRelativePath: /\.jade$/,
 			dependFiles            : function (info) {
-				return ['father.jade']
+				var code = info.fileContent
+				var REG = /include\s+([^\r\n]+)/
+				var result = []
+				while (true) {
+
+				}
 			}
 		},
 		{
