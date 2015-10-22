@@ -2,7 +2,7 @@
   "name": "toolkit-watcher",
   "version": "0.1.0-dev",
   "description": "CLI tool. Execute program when file add/change/delete/etc",
-  "main": "./index.js",
+  "main": "./lib/main.js",
   "scripts": {
     "test": "mocha --recursive"
   },
@@ -15,6 +15,7 @@
     "colors": "^1.1.2",
     "commander": "^2.8.1",
     "fs-extra": "^0.24.0",
+    "log": "valaxy/log",
     "minimatch": "^3.0.0",
     "require-reload": "^0.2.2",
     "underscore": "^1.8.3",

@@ -27,7 +27,7 @@ describe('main', function () {
 		fs.outputFileSync(path.join(dir, '.toolbox/watcher.js'), getScript(function () {
 			module.exports = {
 				ignoreOnFileRelativePath: /^excludes(\/.*)?$/,
-				tasks                     : [
+				tasks                   : [
 					{
 						isEnabled              : true,
 						description            : '编译JADE',
