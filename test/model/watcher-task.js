@@ -119,23 +119,32 @@ describe('model.WatcherTask', function () {
 
 		// String
 		var t = WatcherTask.create({outputPath: '123'})
-		assert.equal(t.outputPath(), '123')
+		assert.equal(t.outputPath({projectPath: '/a/b'}), '/a/b/123')
 
 		// String with marco
 		var t = WatcherTask.create({outputPath: '${filePath}.test'})
-		assert.equal(t.outputPath({filePath: 'abc'}), 'abc.test')
+		assert.equal(t.outputPath({filePath: 'abc', projectPath: '/a'}), '/a/abc.test')
 
 		// Empty-String
 		var t = WatcherTask.create({outputPath: ''})
-		assert.equal(t.outputPath({filePath: 'test.js'}), 'test.js.output')
+		assert.equal(t.outputPath({filePath: '/x/test.js'}), '/x/test.js.output')
 
-		// Function
+		// Function return relative path
 		var t = WatcherTask.create({
 			outputPath: function (info) {
-				return info
+				return info.x
 			}
 		})
-		assert.equal(t.outputPath('test'), 'test')
+		assert.equal(t.outputPath({x: 'test', projectPath: '/a'}), '/a/test')
+
+		// Function return absolute path
+		var t = WatcherTask.create({
+			outputPath: function (info) {
+				return info.x
+			}
+		})
+		assert.equal(t.outputPath({x: '/a/test'}), '/a/test')
+
 
 		// Function throw error
 		var t = WatcherTask.create({
@@ -143,7 +152,7 @@ describe('model.WatcherTask', function () {
 				throw 'test error'
 			}
 		})
-		assert.equal(t.outputPath({filePath: 'test.js'}), 'test.js.output')
+		assert.equal(t.outputPath({filePath: '/a/test.js'}), '/a/test.js.output')
 	})
 
 })
