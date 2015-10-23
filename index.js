@@ -24,5 +24,4 @@ if (!commander.project) {
 }
 
 
-logger.info('project', commander.project)
 main(commander)

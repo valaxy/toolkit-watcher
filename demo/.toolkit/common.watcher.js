@@ -9,7 +9,7 @@ module.exports = {
 
 	tasks: [
 		{
-			isEnabled              : true,
+			isEnabled              : false,
 			description            : '编译JADE',
 			program                : 'jade',
 			arguments              : [
@@ -21,9 +21,7 @@ module.exports = {
 				var code = info.fileContent
 				var REG = /include\s+([^\r\n]+)/
 				var result = []
-				while (true) {
 
-				}
 			}
 		},
 		{
