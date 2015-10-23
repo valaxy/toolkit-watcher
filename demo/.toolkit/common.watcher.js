@@ -1,3 +1,5 @@
+var path = require('path')
+
 module.exports = {
 	matchOnFileRelativePath : [
 		'**/*'
@@ -9,7 +11,7 @@ module.exports = {
 
 	tasks: [
 		{
-			isEnabled              : false,
+			isEnabled              : true,
 			description            : '编译JADE',
 			program                : 'jade',
 			arguments              : [
@@ -19,9 +21,14 @@ module.exports = {
 			matchOnFileRelativePath: /\.jade$/,
 			dependFiles            : function (info) {
 				var code = info.fileContent
-				var REG = /include\s+([^\r\n]+)/
+				var REG = /include\s+([^\r\n\s]+)/g
 				var result = []
-
+				while (true) {
+					var match = REG.exec(code)
+					if (!match) break
+					result.push(path.join(info.dirRelativePath, match[1] + '.jade'))
+				}
+				return result
 			}
 		},
 		{
