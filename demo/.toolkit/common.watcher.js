@@ -26,7 +26,7 @@ module.exports = {
 				while (true) {
 					var match = REG.exec(code)
 					if (!match) break
-					result.push(path.join(info.dirRelativePath, match[1] + '.jade'))
+					result.push(path.join(info.dirRelativePath, match[1] + '.jade'))  
 				}
 				return result
 			}
