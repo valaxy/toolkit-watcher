@@ -24,5 +24,5 @@ if (!commander.project) {
 }
 
 
-logger.info('project'.cyan, commander.project)
+logger.info('project', commander.project)
 main(commander)
