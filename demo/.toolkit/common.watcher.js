@@ -15,17 +15,21 @@ module.exports = {
 	tasks: [
 		jade({
 			description            : 'Compile jade to html',
-			isEnabled              : true,
+			isEnabled              : false,
 			program                : 'jade',
+			//arguments              : [
+			//	'--out ${projectPath}/dest/${dirRelativePath}',
+			//	'$filePath'
+			//],
 			arguments              : [
-				'--out ${projectPath}/dest/${dirRelativePath}',
+				'--out ${dirPath}',
 				'$filePath'
 			],
 			matchOnFileRelativePath: /\.jade$/
 		}),
 		scss({
 			description            : 'Compile scss to css',
-			isEnabled              : true,
+			isEnabled              : false,
 			program                : 'sass',
 			arguments              : [
 				'--sourcemap=none',
@@ -47,7 +51,8 @@ module.exports = {
 				'$filePath'
 			],
 			createOutputFromStdout : true,
-			outputPath             : '${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'
+			outputPath             : '${dirPath}/${fileNameWithoutAllExtensions}.js'
+			//outputPath             : '${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'
 		}
 	]
 }
