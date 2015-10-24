@@ -1,5 +1,7 @@
 var path = require('path'),
-    jade = require('../../task/jade')
+    jade = require('../../task/jade'),
+    scss = require('../../task/scss')
+
 
 module.exports = {
 	matchOnFileRelativePath : [
@@ -21,20 +23,20 @@ module.exports = {
 			],
 			matchOnFileRelativePath: /\.jade$/
 		}),
-		{
+		scss({
 			isEnabled              : true,
-			description            : '编译SCSS',
+			description            : 'Compile scss to css',
 			program                : 'sass',
 			arguments              : [
 				'--sourcemap=none',
 				'--no-cache',
 				'$filePath',
-				'${dirPath}/${fileNameWithoutAllExtensions}.css'
+				'${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.css'
 			],
 			matchOnFileRelativePath: /\.scss$/
-		},
+		}),
 		{
-			description            : 'compile ECMAScript 6',
+			description            : 'Compile ECMAScript 6',
 			isEnabled              : true,
 			matchOnFileRelativePath: /\.es6\.js$/,
 			program                : 'babel',

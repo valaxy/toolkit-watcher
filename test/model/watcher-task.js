@@ -155,4 +155,26 @@ describe('model.WatcherTask', function () {
 		assert.equal(t.outputPath({filePath: '/a/test.js'}), '/a/test.js.output')
 	})
 
+
+	it('dependFiles()', function () {
+		// undefined/default
+		var t = WatcherTask.create()
+		assert.deepEqual(t.dependFiles(), [])
+
+		// String of absolutePath
+		var t = WatcherTask.create({dependFiles: '/a/b'})
+		assert.deepEqual(t.dependFiles({dirPath: '/a'}), ['b'])
+
+		// String of relativePath
+		var t = WatcherTask.create({dependFiles: 'xyz/abc'})
+		assert.deepEqual(t.dependFiles({}), ['xyz/abc'])
+
+		// Regexp of relativePath
+		var t = WatcherTask.create({dependFiles: /include ([^\r\n]+)/g})
+		assert.deepEqual(t.dependFiles({
+			dirRelativePath  : 'dir',
+			fileAllExtensions: '.jade',
+			fileContent      : 'include abc\ninclude xyz'
+		}), ['dir/abc.jade', 'dir/xyz.jade'])
+	})
 })
