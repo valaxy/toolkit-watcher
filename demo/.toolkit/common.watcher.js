@@ -1,4 +1,5 @@
-var path = require('path')
+var path = require('path'),
+    jade = require('../../task/jade')
 
 module.exports = {
 	matchOnFileRelativePath : [
@@ -10,27 +11,16 @@ module.exports = {
 	],
 
 	tasks: [
-		{
+		jade({
 			isEnabled              : true,
-			description            : '编译JADE',
+			description            : 'Compile jade to html',
 			program                : 'jade',
 			arguments              : [
 				'--out ${projectPath}/dest/${dirRelativePath}',
 				'$filePath'
 			],
-			matchOnFileRelativePath: /\.jade$/,
-			dependFiles            : function (info) {
-				var code = info.fileContent
-				var REG = /include\s+([^\r\n\s]+)/g
-				var result = []
-				while (true) {
-					var match = REG.exec(code)
-					if (!match) break
-					result.push(path.join(info.dirRelativePath, match[1] + '.jade'))  
-				}
-				return result
-			}
-		},
+			matchOnFileRelativePath: /\.jade$/
+		}),
 		{
 			isEnabled              : true,
 			description            : '编译SCSS',
@@ -80,9 +70,4 @@ module.exports = {
 //	scopeName        : '',
 //	trackOnlyRoot    : '', // todo 如果不知道语法将不能发挥作用
 //	workingDir       : '',
-//
-//	// 自定义
-//  excludes
-//	fileNameMatch: /\.jade$/, // execute program if fileName match
-//	filePathMatch: ''  // execute program if filePath match
-//},
+
