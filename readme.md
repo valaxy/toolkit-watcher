@@ -29,12 +29,13 @@ module.exports = {
 }
 ```
 
-# Next Features
+# TODO / Next Features
+- 有一个非常严重的bug, 就是如果把文件编译到相同目录会导致源文件触发change事件, 原因不明, 使用babel编译jsx时遇到
+    - 猜测也许是正则表达式被重复命中?
+    - 已确认是chokidar的bug
 - Track only root file
 - √ compile be depended files
 - Specify current workplace path
 - Normalize path, all use linux '/' nor windows '\'
-
-# TODO
-- 有一个非常严重的bug, 就是如果把文件编译到相同目录会导致源文件触发change事件, 原因不明, 使用babel编译jsx时遇到
-    - 猜测也许是正则表达式被重复命中?
+- add configuration of onUpdate/onAdd/onChange/onDelete
+- use a async queue to execute task at the bottom
