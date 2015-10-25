@@ -14,6 +14,7 @@ module.exports = {
 
 	tasks: [
 		jade({
+			name                   : 'jade',
 			description            : 'Compile jade to html',
 			isEnabled              : true,
 			program                : 'jade',
@@ -24,6 +25,7 @@ module.exports = {
 			matchOnFileRelativePath: /\.jade$/
 		}),
 		scss({
+			name                   : 'scss',
 			description            : 'Compile scss to css',
 			isEnabled              : true,
 			program                : 'sass',
@@ -36,6 +38,7 @@ module.exports = {
 			matchOnFileRelativePath: /\.scss$/
 		}),
 		{
+			name                   : 'jsx/es6',
 			description            : 'Compile ecmascript6/jsx to js',
 			isEnabled              : true,
 			matchOnFileRelativePath: [
