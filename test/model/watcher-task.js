@@ -48,16 +48,23 @@ describe('model.WatcherTask', function () {
 		var t = WatcherTask.create({matchOnFileRelativePath: /abc/})
 		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc/xyz'}))
 
-		// Array<Regexp>
+		// String
+		var t = WatcherTask.create({matchOnFileRelativePath: '*.js'})
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'ab.js'}))
+		assert.ok(!t.isMatchOnFileRelativePath({fileRelativePath: 'ab.jade'}))
+
+		// Array<Regexp, String>
 		var t = WatcherTask.create({
 			matchOnFileRelativePath: [
 				/abc/,
-				/xyz/
+				/xyz/,
+				'**/*.xy'
 			]
 		})
 		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc'}))
 		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'xyz'}))
 		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'abc/xyz'}))
+		assert.ok(t.isMatchOnFileRelativePath({fileRelativePath: 'xx.xy'}))
 
 		// Function
 		var t = WatcherTask.create({
