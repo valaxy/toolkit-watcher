@@ -17,7 +17,6 @@ module.exports = {
 			name                   : 'jade',
 			description            : 'Compile jade to html',
 			isEnabled              : true,
-			program                : 'jade',
 			arguments              : [
 				'--out ${projectPath}/dest/${dirRelativePath}',
 				'$filePath'
@@ -28,7 +27,6 @@ module.exports = {
 			name                   : 'scss',
 			description            : 'Compile scss to css',
 			isEnabled              : true,
-			program                : 'sass',
 			arguments              : [
 				'--sourcemap=none',
 				'--no-cache',

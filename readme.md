@@ -1,4 +1,6 @@
 > This is under development
+> Grunt Watcher maybe a better solution with abundant task
+> So I'm consider combine both toolkit-watcher with grunt-watcher
 
 [![Build Status](https://travis-ci.org/valaxy/toolkit-watcher.svg?branch=master)](https://travis-ci.org/valaxy/toolkit-watcher)
 [![Dependency Status](https://david-dm.org/valaxy/toolkit-watcher.svg)](https://david-dm.org/valaxy/toolkit-watcher)
@@ -30,8 +32,7 @@ module.exports = {
 ```
 
 # TODO / Next Feature
-- 有一个非常严重的bug, 就是如果把文件编译到相同目录会导致源文件触发change事件, 原因不明, 使用babel编译jsx时遇到
-    - 猜测也许是正则表达式被重复命中?
+- 有一个bug, 修改相同目录文件时会导致所有相同前缀文件触发change事件
     - 已确认是chokidar的bug
 - Track only root file
 - √ compile be depended files
@@ -40,3 +41,8 @@ module.exports = {
 - add configuration of onUpdate/onAdd/onChange/onDelete
 - use a async queue to execute task at the bottom
 - add timeout
+
+# Reference
+- [Webstorm Watcher](https://www.jetbrains.com/webstorm/help/new-watcher-dialog.html)
+- [Grunt Watcher](https://github.com/gruntjs/grunt-contrib-watch)
+
