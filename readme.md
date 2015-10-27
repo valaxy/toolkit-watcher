@@ -41,6 +41,7 @@ module.exports = {
 - add configuration of onUpdate/onAdd/onChange/onDelete
 - use a async queue to execute task at the bottom
 - add timeout
+- bug: FileGraph bug when add file after ready
 
 # Reference
 - [Webstorm Watcher](https://www.jetbrains.com/webstorm/help/new-watcher-dialog.html)
