@@ -1,6 +1,7 @@
-var path = require('path'),
-    jade = require('../../task/jade'),
-    scss = require('../../task/scss')
+var path    = require('path'),
+    jade    = require('../../task/jade'),
+    scss    = require('../../task/scss'),
+    webpack = require('../../task/webpack')
 
 
 module.exports = {
@@ -50,7 +51,16 @@ module.exports = {
 			createOutputFromStdout : true,
 			outputPath             : '${dirPath}/${fileNameWithoutAllExtensions}.js'
 			//outputPath             : '${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'
-		}
+		},
+		webpack({
+			name                   : 'webpack',
+			isEnabled              : true,
+			matchOnFileRelativePath: 'webpack/**/*.webpack.js',
+			arguments              : [
+				'$filePath',
+				'${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'
+			]
+		})
 	]
 }
 
