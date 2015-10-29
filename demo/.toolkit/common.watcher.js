@@ -1,7 +1,8 @@
 var path    = require('path'),
     jade    = require('../../task/jade'),
     scss    = require('../../task/scss'),
-    webpack = require('../../task/webpack')
+    webpack = require('../../task/webpack'),
+    copy    = require('../../task/copy')
 
 
 module.exports = {
@@ -60,16 +61,21 @@ module.exports = {
 				'$filePath',
 				'${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'
 			]
+		}),
+		copy({
+			name                   : 'copy',
+			isEnabled              : true,
+			matchOnFileRelativePath: 'copy/**/*',
+			outputPath             : '${projectPath}/dest/${dirRelativePath}/${fileName}'
 		})
+
 	]
 }
 
 
 //{
 //	// webstorm兼容
-//	isEnabled        : false,
 //	checkSyntaxErrors: '', // todo 这里的问题是如何识别syntax error
-//	description      : '', // human readable string for long text
 //	exitCodeBehavior : '', // show console
 //	fileExtension    : '',
 //	filter           : '', // glob matcher, 不知道是干什么的
@@ -79,11 +85,6 @@ module.exports = {
 //	outputFilters    : '',
 //	outputFromStdout : '',
 //	passParentEnvs   : '',
-//	program          : 'jade', // shell command to execute
-//	arguments        : [
-//		'--out $FileDir',
-//		'$FilePath'
-//	], // string of string of array
 //	scopeName        : '',
 //	trackOnlyRoot    : '', // todo 如果不知道语法将不能发挥作用
 //	workingDir       : '',
