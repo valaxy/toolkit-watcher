@@ -55,7 +55,7 @@ module.exports = {
 		webpack({
 			name                   : 'webpack',
 			isEnabled              : true,
-			matchOnFileRelativePath: 'webpack/**/*.webpack.js',
+			matchOnFileRelativePath: 'webpack/**/*.js',
 			arguments              : [
 				'$filePath',
 				'${projectPath}/dest/${dirRelativePath}/${fileNameWithoutAllExtensions}.js'

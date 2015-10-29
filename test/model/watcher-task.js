@@ -168,13 +168,13 @@ describe('model.WatcherTask', function () {
 		var t = WatcherTask.create()
 		assert.deepEqual(t.dependFiles(), [])
 
-		// String of absolutePath
-		var t = WatcherTask.create({dependFiles: '/a/b'})
-		assert.deepEqual(t.dependFiles({dirPath: '/a'}), ['b'])
+		//// String of absolutePath
+		//var t = WatcherTask.create({dependFiles: '/a/b'})
+		//assert.deepEqual(t.dependFiles({dirPath: '/a'}), ['b']) // todo, String不支持了, 应当删去
 
-		// String of relativePath
-		var t = WatcherTask.create({dependFiles: 'xyz/abc'})
-		assert.deepEqual(t.dependFiles({}), ['xyz/abc'])
+		//// String of relativePath
+		//var t = WatcherTask.create({dependFiles: 'xyz/abc'})
+		//assert.deepEqual(t.dependFiles({}), ['xyz/abc'])
 
 		// Regexp of relativePath
 		var t = WatcherTask.create({dependFiles: /include ([^\r\n]+)/g})
@@ -183,5 +183,21 @@ describe('model.WatcherTask', function () {
 			fileAllExtensions: '.jade',
 			fileContent      : 'include abc\ninclude xyz'
 		}), ['dir/abc.jade', 'dir/xyz.jade'])
+
+		// Complex
+		var t = WatcherTask.create({
+			dependFiles: {
+				match    : [
+					[/(include) ([a-z]+)/g, 2]
+				],
+				onProcess: function (path) {
+					return path + '.js'
+				}
+			}
+		})
+		assert.deepEqual(t.dependFiles({
+			fileContent: 'include abc\ninclude xyz'
+		}), ['abc.js', 'xyz.js'])
 	})
+
 })

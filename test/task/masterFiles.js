@@ -2,13 +2,19 @@ var assert      = require('assert'),
     masterFiles = require('../../lib/task/masterFiles')
 
 var state
-var setState = function (s) {
+var setState = function (s, msg, d) {
 	state = s
+	return d
 }
 
 describe('masterFiles', function () {
 	it('_matchItem()', function () {
 		var reg = /abc/
+
+		// Undefined
+		state = null
+		assert.deepEqual(masterFiles._matchItem(undefined, setState), undefined)
+		assert.equal(state, 'right')
 
 		// RegExp
 		state = null
@@ -47,7 +53,7 @@ describe('masterFiles', function () {
 		}
 
 		// Undefined
-		assert.deepEqual(masterFiles._onProcess(undefined, setState), undefined)
+		assert.equal(masterFiles._onProcess(undefined, setState), masterFiles._onProcessDefault)
 		assert.equal(state, 'right')
 
 		// Function
@@ -55,7 +61,44 @@ describe('masterFiles', function () {
 		assert.equal(state, 'right')
 
 		// Else
-		assert.deepEqual(masterFiles._onProcess(123, setState), undefined)
+		assert.equal(masterFiles._onProcess(123, setState), masterFiles._onProcessDefault)
 		assert.equal(state, 'warn')
+	})
+
+	it('_match()', function () {
+		var reg = /123/
+		var reg2 = /xyz/
+
+		// Undefined
+		assert.deepEqual(masterFiles._match(undefined, setState), [])
+		assert.equal(state, 'right')
+
+		// RegExp
+		assert.deepEqual(masterFiles._match(reg, setState), [[reg, 1]])
+		assert.equal(state, 'right')
+
+		// Array-empty
+		assert.deepEqual(masterFiles._match([], setState), [])
+		assert.equal(state, 'right')
+
+		// Array
+		assert.deepEqual(masterFiles._match([reg, [reg2, 2]], setState), [[reg, 1], [reg2, 2]])
+		assert.equal(state, 'right')
+
+		// Else
+		assert.deepEqual(masterFiles._match('xyz', setState), [])
+		assert.equal(state, 'warn')
+	})
+
+	it('_masterFiles', function () {
+		var reg = /123/
+		assert.deepEqual(masterFiles._masterFiles(reg, setState), {
+			match    : [[reg, 1]],
+			onProcess: masterFiles._onProcessDefault
+		})
+		assert.deepEqual(state, {
+			match    : ['right', undefined],
+			onProcess: ['right', undefined]
+		})
 	})
 })

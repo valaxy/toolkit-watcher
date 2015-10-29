@@ -32,8 +32,6 @@ module.exports = {
 ```
 
 # TODO / Next Feature
-- 有一个bug, 修改相同目录文件时会导致所有相同前缀文件触发change事件
-    - 已确认是chokidar的bug
 - Track only root file
 - √ compile be depended files
 - Specify current workplace path
@@ -42,6 +40,7 @@ module.exports = {
 - use a async queue to execute task at the bottom
 - add timeout
 - bug: FileGraph bug when add file after ready
+- refactor about the schema check process
 
 # Reference
 - [Webstorm Watcher](https://www.jetbrains.com/webstorm/help/new-watcher-dialog.html)
