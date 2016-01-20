@@ -1,6 +1,6 @@
-> This is under development
-> Grunt Watcher maybe a better solution with abundant task
-> So I'm consider combine both toolkit-watcher with grunt-watcher
+> ATTENTION: toolkit-watcher do the exactly same thing with gulp.watch
+> Use gulp.watch instead, this is for experimental study
+
 
 [![Build Status](https://travis-ci.org/valaxy/toolkit-watcher.svg?branch=master)](https://travis-ci.org/valaxy/toolkit-watcher)
 [![Dependency Status](https://david-dm.org/valaxy/toolkit-watcher.svg)](https://david-dm.org/valaxy/toolkit-watcher)

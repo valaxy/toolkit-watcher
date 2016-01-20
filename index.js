@@ -14,8 +14,8 @@ var pkg = fs.readJsonSync(__dirname + '/package.json')
 commander
 	.version(pkg.version)
 	.option('--project <project>', 'project root')
+	.option('--buildAll', 'walk all watch files and build, but not keep watching')
 	.parse(process.argv)
-
 
 if (!commander.project) {
 	commander.project = process.cwd()

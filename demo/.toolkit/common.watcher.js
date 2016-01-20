@@ -40,7 +40,7 @@ module.exports = {
 		{
 			name                   : 'jsx/es6',
 			description            : 'Compile ecmascript6/jsx to js',
-			isEnabled              : true,
+			isEnabled              : false,
 			matchOnFileRelativePath: [
 				/\.es6\.js$/,
 				/\.jsx$/
