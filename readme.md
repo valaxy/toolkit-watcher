@@ -1,4 +1,4 @@
-> ATTENTION: toolkit-watcher do the exactly same thing with gulp.watch
+> ATTENTION: toolkit-watcher do the exactly same thing with gulp.watch      
 > Use gulp.watch instead, this is for experimental study
 
 
