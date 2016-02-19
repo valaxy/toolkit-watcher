@@ -1,6 +1,6 @@
 {
   "name": "toolkit-watcher",
-  "version": "0.1.0-dev",
+  "version": "0.1.0",
   "description": "CLI tool. Execute program when file add/change/delete/etc",
   "main": "./lib/main.js",
   "scripts": {
