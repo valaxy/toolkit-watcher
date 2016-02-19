@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --recursive"
   },
-  "bin": "./index.js",
+  "bin": "./bin/index.js",
   "author": "valaxy",
   "license": "MIT",
   "dependencies": {
